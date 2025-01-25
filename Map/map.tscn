@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmj0te8268bxk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_urjpa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olexl"]
+size = Vector2(91, 367)
+
+[node name="Map" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(8, 600)
+shape = SubResource("WorldBoundaryShape2D_urjpa")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -848.0
+offset_top = 600.0
+offset_right = 2528.0
+offset_bottom = 640.0
+color = Color(0.518512, 0.26321, 0.15647, 1)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-752, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(438, 444)
+shape = SubResource("RectangleShape2D_olexl")
+
+[node name="ColorRect2" type="ColorRect" parent="Wall"]
+offset_left = 392.0
+offset_top = 256.0
+offset_right = 488.0
+offset_bottom = 600.0
+color = Color(0.423651, 0.423651, 0.423651, 1)
