@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://85qdx6m31pwx"]
+
+[ext_resource type="Texture2D" uid="uid://c7bt007i5qrlo" path="res://Tilesheets/soldier.png" id="1_eusmp"]
+[ext_resource type="Script" path="res://Enemies/StraightShooter/enemy_straight_shooter.gd" id="1_tbvd3"]
+[ext_resource type="Script" path="res://Enemies/StraightShooter/animated_sprite_2d.gd" id="3_7a8sl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_si0ge"]
+size = Vector2(96, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx56x"]
+size = Vector2(96, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkbe0"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtvx7"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(0, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4nee"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(64, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_516rp"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(128, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkx3e"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(192, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvvw7"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(256, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gngp"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(320, 360, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mealo"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(0, 60, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtxeh"]
+atlas = ExtResource("1_eusmp")
+region = Rect2(64, 60, 64, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0ry3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkbe0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtvx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4nee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_516rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkx3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvvw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gngp")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mealo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtxeh")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[node name="Enemy_Straight_Shooter" type="CharacterBody2D"]
+script = ExtResource("1_tbvd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_si0ge")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qx56x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_h0ry3")
+animation = &"shoot"
+script = ExtResource("3_7a8sl")
+
+[node name="Action_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Strafe_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shoot_Timer" type="Timer" parent="."]
+one_shot = true
